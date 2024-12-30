@@ -1,0 +1,23 @@
+# Ignorar los entornos virtuales
+venv/
+env/
+.venv/
+.virtualenv/
+
+# Archivos específicos de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos de configuración de sistemas operativos
+.DS_Store
+Thumbs.db
+
+# Otros archivos temporales o generados automáticamente
+*.log
+*.bak
+

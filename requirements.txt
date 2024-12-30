@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+beautifulsoup4
+mysql-connector-python
+pydantic
+requests
+selenium
