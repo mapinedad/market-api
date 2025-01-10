@@ -1,6 +1,7 @@
 import mysql.connector
 import logging
 from mysql.connector import pooling
+# from sqlalchemy import create_engine
 
 DATABASE_CONFIG = {
     "host": "localhost",
@@ -10,6 +11,11 @@ DATABASE_CONFIG = {
     "charset": "utf8mb4",  # Charset compatible
     "collation": "utf8mb4_general_ci",  # Forzar la collation
 }
+
+# DATABASE_URL = f"mysql+mysqlconnector://{DATABASE_CONFIG['user']}:{DATABASE_CONFIG['password']}@{DATABASE_CONFIG['host']}/{DATABASE_CONFIG['database']}?charset=utf8mb4&collation=utf8mb4_general_ci"
+
+# Crear pool de conexiones para SQLAlchemy
+# engine = create_engine(DATABASE_URL, pool_size=5)
 
 connection_pool = pooling.MySQLConnectionPool(pool_name="mypool",
                                               pool_size=5,

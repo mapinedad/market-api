@@ -6,13 +6,13 @@ from app.crud import insert_market_summary, insert_stocks, get_market_summary, g
 router = APIRouter()
 
 @router.post("/market/summary")
-def store_market_summary():
+async def store_market_summary():
     data = scrape_market_summary()
     insert_market_summary(data)
     return {"message": "Market summary stored successfully"}
 
 @router.post("/market/stocks")
-def store_market_stocks():
+async def store_market_stocks():
     """Obtiene datos del mercado y los inserta en la base de datos."""
     data = scrape_market_stocks()
     if not data:
@@ -27,7 +27,7 @@ def store_market_stocks():
 
 # Nuevas rutas GET
 @router.get("/market/summary")
-def fetch_market_summary():
+async def fetch_market_summary():
     """Obtiene el resumen del mercado desde la base de datos."""
     data = get_market_summary()
 
@@ -37,7 +37,7 @@ def fetch_market_summary():
     return {"message": "No se encontraron datos de resumen del mercado."}
 
 @router.get("/market/stocks")
-def fetch_market_stocks():
+async def fetch_market_stocks():
     """Obtiene acciones del mercado desde la base de datos"""
     data = get_stocks()
 

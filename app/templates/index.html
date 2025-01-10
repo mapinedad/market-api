@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Real-Time Dashboard</title>
+</head>
+<body>
+    <h1>Gráfico en Tiempo Real</h1>
+    <canvas id="myChart"></canvas>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Valor',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    tension: 0.1
+                }]
+            }
+        });
+
+        const eventSource = new EventSource('/api/v1/dashboards/realtime');
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            chart.data.labels.push(data.time);
+            chart.data.datasets[0].data.push(data.value);
+            chart.update();
+        };
+    </script>
+</body>
+</html>
